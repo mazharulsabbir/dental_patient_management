@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
@@ -34,46 +36,123 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: _buildSuggestions()
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+          centerTitle: true,
+        ),
+        body: _buildSuggestions());
   }
 
-Widget _buildSuggestions() {
-    return ListView.builder(
-      itemBuilder: (BuildContext _context, int i) {        
-        final int index = i ~/ 2;
-        
-        if (index >= _nameList.length) {
-          _nameList.addAll(generateWordPairs().take(10));
-        }
-        return _listItem(_nameList[index]);
+  Widget _buildSuggestions() {
+    return ListView.builder(itemBuilder: (BuildContext _context, int i) {
+      final int index = i ~/ 2;
+
+      if (index >= _nameList.length) {
+        _nameList.addAll(generateWordPairs().take(10));
       }
-    );
+
+      double a = Random.secure().nextDouble();
+
+      return _listItem(_nameList[index], a);
+    });
   }
 
-  Widget _listItem(WordPair pair) {
+  Widget _listItem(WordPair pair, double amount) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       margin: new EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Container(
-        padding: new EdgeInsets.all(16.0),
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(pair.asPascalCase, style: TextStyle(fontSize: 30.0)),
-              ],
+            Container(
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16.0),
+                      topLeft: Radius.circular(16.0))),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('\৳', style: TextStyle(fontSize: 30.0))
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        "87234",
+                        style: TextStyle(fontSize: 30.0),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  Row(
+                    children: <Widget>[Text("Date: 12/12/12")],
+                  ),
+                ],
+              ),
             ),
-            Row(
+            SizedBox(
+              width: 16.0,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(pair.asUpperCase),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Image.asset(
+                      "man.png",
+                      width: 24.0,
+                      height: 24.0,
+                    ),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(pair.asPascalCase, style: TextStyle(fontSize: 30.0)),
+                  ],
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(pair.asPascalCase),
+                  ],
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(pair.asPascalCase),
+                  ],
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(pair.asPascalCase),
+                  ],
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(pair.asPascalCase),
+                  ],
+                ),
               ],
             ),
           ],
