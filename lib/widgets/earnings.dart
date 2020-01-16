@@ -28,10 +28,12 @@ class _EarningsState extends State<Earnings> {
 
   Widget pieChart() {
     Map<String, double> dataMap = new Map();
-    dataMap.putIfAbsent("Flutter", () => 5);
-    dataMap.putIfAbsent("React", () => 3);
-    dataMap.putIfAbsent("Xamarin", () => 2);
-    dataMap.putIfAbsent("Ionic", () => 2);
+    dataMap.putIfAbsent("Scaling", () => 5);
+    dataMap.putIfAbsent("Filling", () => 3);
+    dataMap.putIfAbsent("R.C.T", () => 2);
+    dataMap.putIfAbsent("Cap", () => 2);
+    dataMap.putIfAbsent("Extraction", () => 2);
+    dataMap.putIfAbsent("Palpectomy", () => 2);
 
     return PieChart(dataMap: dataMap,);
   }
