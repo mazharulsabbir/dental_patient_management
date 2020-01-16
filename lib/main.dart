@@ -1,7 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'model/patient.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,133 +29,175 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final wordPair = WordPair.random();
-  List<WordPair> _nameList = <WordPair>[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.ac_unit),
+          onPressed: () {
+            print('Unit Pressed');
+          },
         ),
-        body: _buildSuggestions());
+      ),
+      body: _listOfPatients(),
+    );
   }
 
-  Widget _buildSuggestions() {
-    return ListView.builder(itemBuilder: (BuildContext _context, int i) {
-      final int index = i ~/ 2;
+  Widget _listOfPatients() {
+    List<Patient> patients = new List();
+    var patient = new Patient("Mazharul Sabbir", '1825632294',
+        'Dhaka Bangladesh', 'Cap', 'Completed', '1000\$', '\$1000', '0\$');
+    patients.add(patient);
+    patients.add(patient);
+    patients.add(patient);
+    patients.add(patient);
+    patients.add(patient);
+    patients.add(patient);
+    patients.add(patient);
 
-      if (index >= _nameList.length) {
-        _nameList.addAll(generateWordPairs().take(10));
-      }
-
-      double a = Random.secure().nextDouble();
-
-      return _listItem(_nameList[index], a);
-    });
+    return ListView.builder(
+        itemCount: patients.length,
+        itemBuilder: (BuildContext context, int i) {
+          return _patientListItem(patients, i);
+        });
   }
 
-  Widget _listItem(WordPair pair, double amount) {
+  Widget _patientListItem(List<Patient> patients, int p) {
+    const double _margin_8 = 8.0;
+    const double _margin_4 = 4.0;
+
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      margin: new EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16.0),
-                      topLeft: Radius.circular(16.0))),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text('\৳', style: TextStyle(fontSize: 30.0))
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "87234",
-                        style: TextStyle(fontSize: 30.0),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Row(
-                    children: <Widget>[Text("Date: 12/12/12")],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 16.0,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        margin: new EdgeInsets.symmetric(
+            horizontal: _margin_8, vertical: _margin_4),
+        child: InkWell(
+          onTap: () {
+            print('Card Tapped');
+          },
+          child: Container(
+            margin: EdgeInsets.only(
+                top: _margin_4,
+                bottom: _margin_4,
+                left: _margin_8,
+                right: _margin_8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,          
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Image.asset(
-                      "man.png",
-                      width: 24.0,
-                      height: 24.0,
-                    ),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(pair.asPascalCase, style: TextStyle(fontSize: 30.0)),
-                  ],
+                Padding(
+                  padding: EdgeInsets.all(_margin_8),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            patients[p].name,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18.0),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                patients[p].total.toString(),
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text('Total', style: TextStyle(fontSize: 10.0))
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Divider(
+                        height: 1.0,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Paid', style: TextStyle(fontSize: 10.0)),
+                              Text(
+                                patients[p].paid.toString(),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text('Due', style: TextStyle(fontSize: 10.0)),
+                              Text(
+                                patients[p].due.toString(),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Treatment',
+                                  style: TextStyle(fontSize: 10.0)),
+                              Text(
+                                patients[p].treatment.toString(),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Text('Next Meeting',
+                                  style: TextStyle(fontSize: 10.0)),
+                              Text(
+                                patients[p].nextMeeting.toString(),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(pair.asPascalCase),
-                  ],
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(pair.asPascalCase),
-                  ],
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(pair.asPascalCase),
-                  ],
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(pair.asPascalCase),
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(left: _margin_8, bottom: _margin_8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('Mobile', style: TextStyle(fontSize: 10.0)),
+                          Text(
+                            patients[p].phone.toString(),
+                          ),
+                        ],
+                      ),
+                      Icon(Icons.navigate_next)
+                    ],
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
