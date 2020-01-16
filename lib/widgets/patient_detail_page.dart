@@ -8,35 +8,28 @@ class PatientDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          _patient.name,
-        ),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxScroll) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 200.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text(
+                    _patient.name,
+                  ),
+                  background: Image.asset(
+                    "man.png",
+                    fit: BoxFit.cover,
+                  )
+                  ),
+            )
+          ];
+        },
+        body: DetailOfPatient(_patient),
       ),
-      // body: NestedScrollView(
-      //   headerSliverBuilder: (BuildContext context, bool innerBoxScroll) {
-      //     return <Widget>[
-      //       SliverAppBar(
-      //         expandedHeight: 200.0,
-      //         floating: false,
-      //         pinned: true,
-      //         flexibleSpace: FlexibleSpaceBar(
-      //           centerTitle: true,
-      //           title: Text(
-      //             _patient.name,
-      //           ),
-      //           // background: Image.asset(
-      //           //   "man.png",
-      //           //   fit: BoxFit.cover,
-      //           // )
-      //         ),
-      //       )
-      //     ];
-      //   },
-      //   body: DetailOfPatient(_patient),
-      // ),
-      body: DetailOfPatient(_patient),
     );
   }
 }
