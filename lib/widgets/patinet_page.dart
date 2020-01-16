@@ -31,22 +31,22 @@ class _PatientListPageState extends State<PatientListPage> {
   Widget _listOfPatients() {
     List<Patient> patients = new List();
     var patient = new Patient("Mazharul Sabbir", '1825632294',
-        'Dhaka Bangladesh', 'Cap', 'Completed', '1000\$', '\$1000', '0\$');
+        'Dhaka Bangladesh', 'Cap', 'Completed', '1000', '1000', '0');
 
-    var patient1 = new Patient("Sabbir", '1825632294',
-        'Tangail Sadar', 'Scaling', '19 Jun', '5000\$', '\$1000', '4000\$');
+    var patient1 = new Patient("Sabbir", '1825632294', 'Tangail Sadar',
+        'Scaling', '19 Jun', '5000', '1000', '4000');
 
-    var patient2 = new Patient("Shuvo", '1234567892',
-        'Tangail New Bustand', 'R.C.T', '11 May', '10000\$', '\$7000', '3000\$');
+    var patient2 = new Patient("Shuvo", '1234567892', 'Tangail New Bustand',
+        'R.C.T', '11 May', '10000', '7000', '3000');
 
-    var patient3 = new Patient("Abdus Sattar", '1827453245',
-        'Dhaka Bangladesh', 'Filling', 'Completed', '500\$', '\$500', '0\$');
+    var patient3 = new Patient("Abdus Sattar", '1827453245', 'Dhaka Bangladesh',
+        'Filling', 'Completed', '500', '500', '0');
 
-    var patient4 = new Patient("Sabuj", '1992341245',
-        'Dhaka Bangladesh', 'Extraction', '1 Feb', '15000\$', '\$10000', '5000\$');
+    var patient4 = new Patient("Sabuj", '1992341245', 'Dhaka Bangladesh',
+        'Extraction', '1 Feb', '15000', '10000', '5000');
 
-    var patient5 = new Patient("Sadik", '1873467245',
-        'Dhaka Bangladesh', 'Palpectomy', 'Completed', '11000\$', '\$11000', '0\$');
+    var patient5 = new Patient("Sadik", '1873467245', 'Dhaka Bangladesh',
+        'Palpectomy', 'Completed', '11000', '11000', '0');
 
     patients.add(patient);
     patients.add(patient1);
@@ -66,6 +66,8 @@ class _PatientListPageState extends State<PatientListPage> {
     const double _margin_8 = 8.0;
     const double _margin_4 = 4.0;
 
+    final String _currency = '\৳';
+
     return Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -74,8 +76,10 @@ class _PatientListPageState extends State<PatientListPage> {
         child: InkWell(
           onTap: () {
             //open detail page activity/page
-            Navigator.push(this.context,
-                MaterialPageRoute(builder: (context) => PatientDetailPage()));
+            Navigator.push(
+                this.context,
+                MaterialPageRoute(
+                    builder: (context) => PatientDetailPage(patients[p])));
             print('Tapped $p : ${patients[p].name}');
           },
           child: Container(
@@ -103,7 +107,7 @@ class _PatientListPageState extends State<PatientListPage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                patients[p].total.toString(),
+                                '${patients[p].total} $_currency',
                                 style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold),
@@ -131,7 +135,7 @@ class _PatientListPageState extends State<PatientListPage> {
                             children: <Widget>[
                               Text('Paid', style: TextStyle(fontSize: 10.0)),
                               Text(
-                                patients[p].paid.toString(),
+                                '$_currency ${patients[p].paid}',
                               ),
                             ],
                           ),
@@ -140,7 +144,7 @@ class _PatientListPageState extends State<PatientListPage> {
                             children: <Widget>[
                               Text('Due', style: TextStyle(fontSize: 10.0)),
                               Text(
-                                patients[p].due.toString(),
+                                '${patients[p].due} $_currency',
                               ),
                             ],
                           ),
