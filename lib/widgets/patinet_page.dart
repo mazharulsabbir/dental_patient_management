@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class PatientListPage extends StatefulWidget {
-  PatientListPage({Key key, this.title}) : super(key: key);
-  final String title;
-
   @override
   _PatientListPageState createState() => _PatientListPageState();
 }
@@ -16,7 +13,7 @@ class _PatientListPageState extends State<PatientListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Patients'),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.ac_unit),
