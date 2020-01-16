@@ -24,7 +24,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _index = 1;
+  int _index = 0;
   final tabs = [
     Earnings(),
     PatientListPage(),

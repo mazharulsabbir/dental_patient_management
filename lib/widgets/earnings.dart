@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
+
 class Earnings extends StatefulWidget {
   @override
   _EarningsState createState() => _EarningsState();
@@ -18,7 +20,19 @@ class _EarningsState extends State<Earnings> {
           },
         ),
       ),
-      
+      body: Center(
+        child: pieChart()
+      ),
     );
+  }
+
+  Widget pieChart() {
+    Map<String, double> dataMap = new Map();
+    dataMap.putIfAbsent("Flutter", () => 5);
+    dataMap.putIfAbsent("React", () => 3);
+    dataMap.putIfAbsent("Xamarin", () => 2);
+    dataMap.putIfAbsent("Ionic", () => 2);
+
+    return PieChart(dataMap: dataMap,);
   }
 }
