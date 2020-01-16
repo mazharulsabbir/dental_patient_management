@@ -20,9 +20,7 @@ class _EarningsState extends State<Earnings> {
           },
         ),
       ),
-      body: Center(
-        child: pieChart()
-      ),
+      body: Center(child: pieChart()),
     );
   }
 
@@ -35,6 +33,11 @@ class _EarningsState extends State<Earnings> {
     dataMap.putIfAbsent("Extraction", () => 2);
     dataMap.putIfAbsent("Palpectomy", () => 2);
 
-    return PieChart(dataMap: dataMap,);
+    return PieChart(
+      dataMap: dataMap,
+      legendPosition: LegendPosition.right,
+      chartType: ChartType.disc,
+      showLegends: true,
+    );
   }
 }
