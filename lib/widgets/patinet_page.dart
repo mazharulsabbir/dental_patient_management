@@ -1,6 +1,7 @@
 import 'package:dental_patient_management/model/patient.dart';
 import 'package:dental_patient_management/widgets/patient_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PatientListPage extends StatefulWidget {
   PatientListPage({Key key, this.title}) : super(key: key);
@@ -28,7 +29,7 @@ class _PatientListPageState extends State<PatientListPage> {
     );
   }
 
-  Widget _listOfPatients() {
+  Widget _listOfPatients() {    
     List<Patient> patients = new List();
     var patient = new Patient("Mazharul Sabbir", '1825632294',
         'Dhaka Bangladesh', 'Cap', 'Completed', '1000', '1000', '0');
@@ -67,6 +68,8 @@ class _PatientListPageState extends State<PatientListPage> {
     const double _margin_4 = 4.0;
 
     final String _currency = '\৳';
+
+    // final numberFormat = new NumberFormat('##,###.##');
 
     return Card(
         shape:
