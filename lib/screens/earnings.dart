@@ -20,7 +20,14 @@ class _EarningsState extends State<Earnings> {
           },
         ),
       ),
-      body: Center(child: pieChart()),
+      body: ListView(
+        children: <Widget>[
+          Center(child: pieChart()),
+          Center(child: pieChart()),
+          Center(child: pieChart()),
+          Center(child: pieChart()),
+        ],
+      ),
     );
   }
 
