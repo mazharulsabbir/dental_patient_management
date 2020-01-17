@@ -9,7 +9,7 @@ class Earnings extends StatefulWidget {
 }
 
 class _EarningsState extends State<Earnings> {
-  String _selectedTypeForStat = 'Daily'.toString();
+  String _selectedTypeForStat = 'Weekly'.toString();
   String _selectedTypeForTreatment = 'Daily'.toString();
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _EarningsState extends State<Earnings> {
                               'Daily',
                               'Weekly',
                               'Monthly',
-                              'Weekly'
+                              'Yearly'
                             ].map((String day) {
                               return new DropdownMenuItem<String>(
                                 value: day.toString(),
@@ -81,7 +81,7 @@ class _EarningsState extends State<Earnings> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Statistics',
+                            'Account',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 32.0),
                           ),
@@ -93,11 +93,10 @@ class _EarningsState extends State<Earnings> {
                               });
                             },
                             hint: Text(_selectedTypeForStat.toString()),
-                            items: <String>[
-                              'Daily',
+                            items: <String>[                              
                               'Weekly',
                               'Monthly',
-                              'Weekly'
+                              'Yearly'
                             ].map((String day) {
                               return new DropdownMenuItem<String>(
                                 value: day.toString(),
