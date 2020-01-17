@@ -9,6 +9,8 @@ class Earnings extends StatefulWidget {
 }
 
 class _EarningsState extends State<Earnings> {
+  String _selectedTypeForStat = 'Daily'.toString();
+  String _selectedTypeForTreatment = 'Daily'.toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,19 +29,92 @@ class _EarningsState extends State<Earnings> {
           Column(
             children: <Widget>[
               Card(
-                child: MyChart().pieChart(dataMap()),
-              ),
-              SizedBox(
-                height: 8.0,
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Treatment',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 32.0),
+                          ),
+                          DropdownButton<String>(
+                            onChanged: (day) {
+                              setState(() {
+                                _selectedTypeForTreatment = day.toString();
+                                print(_selectedTypeForTreatment);
+                              });
+                            },
+                            hint: Text(_selectedTypeForTreatment.toString()),
+                            items: <String>[
+                              'Daily',
+                              'Weekly',
+                              'Monthly',
+                              'Weekly'
+                            ].map((String day) {
+                              return new DropdownMenuItem<String>(
+                                value: day.toString(),
+                                child: new Text(day.toString()),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      MyChart().pieChart(dataMap())
+                    ],
+                  ),
+                ),
               ),
               Card(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   // child: MyChart().lineChart(_generateRandomData(7)),
-                  child: MyChart().splineChart(chartData())  ,
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Statistics',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 32.0),
+                          ),
+                          DropdownButton<String>(
+                            onChanged: (day) {
+                              setState(() {
+                                _selectedTypeForStat = day.toString();
+                                print(_selectedTypeForStat);
+                              });
+                            },
+                            hint: Text(_selectedTypeForStat.toString()),
+                            items: <String>[
+                              'Daily',
+                              'Weekly',
+                              'Monthly',
+                              'Weekly'
+                            ].map((String day) {
+                              return new DropdownMenuItem<String>(
+                                value: day.toString(),
+                                child: new Text(day.toString()),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      MyChart().splineChart(chartData())
+                    ],
+                  ),
                 ),
               ),
-              
             ],
           ),
         ],
@@ -51,25 +126,33 @@ class _EarningsState extends State<Earnings> {
 
   List<ChartData> chartData() {
     var chartData = [
-      ChartData('Sat', 10000, 7000, 3000),
-      ChartData('Sun', 11000, 7000, 3000),
-      ChartData('Mon', 1200, 7000, 5000),
-      ChartData('Tue', 10000, 7000, 3000),
-      ChartData('Wed', 15000, 7000, 8000),
-      ChartData('Thu', 7000, 7000, 7000),
-      ChartData('Fri', 5000, 5000, 0),
+      ChartData('Sat', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Sun', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Mon', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Tue', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Wed', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Thu', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData('Fri', random.nextInt(15000).toDouble(),
+          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
     ];
+
     return chartData;
   }
 
   Map<String, double> dataMap() {
     Map<String, double> dataMap = new Map();
-    dataMap.putIfAbsent("Scaling", () => 5);
-    dataMap.putIfAbsent("Filling", () => 3);
-    dataMap.putIfAbsent("R.C.T", () => 2);
-    dataMap.putIfAbsent("Cap", () => 2);
-    dataMap.putIfAbsent("Extraction", () => 4);
-    dataMap.putIfAbsent("Pulpectomy", () => 2);
+    dataMap.putIfAbsent("Scaling", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("Filling", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("R.C.T", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("Cap", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("Extraction", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("Pulpectomy", () => random.nextInt(5).toDouble());
 
     return dataMap;
   }
