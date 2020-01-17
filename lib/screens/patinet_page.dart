@@ -1,4 +1,5 @@
 import 'package:dental_patient_management/model/patient.dart';
+import 'package:dental_patient_management/screens/new_patient.dart';
 import 'package:dental_patient_management/widgets/patient_list_item.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class PatientListPage extends StatefulWidget {
 }
 
 class _PatientListPageState extends State<PatientListPage> {
-  List<Patient> items(){
+  List<Patient> items() {
     List<Patient> patients = new List();
     var patient = new Patient("Mazharul Sabbir", '1825632294',
         'Dhaka Bangladesh', 'Cap', 'Completed', '1000', '1000', '0');
@@ -50,6 +51,14 @@ class _PatientListPageState extends State<PatientListPage> {
             print('Unit Pressed');
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.group_add),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AddNewPatient()));
+            },
+          )
+        ],
       ),
       body: PatientListItem().listOfPatients(items()),
     );

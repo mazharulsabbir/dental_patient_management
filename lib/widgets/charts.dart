@@ -1,5 +1,4 @@
 import 'package:dental_patient_management/model/chart_data.dart';
-import 'package:dental_patient_management/model/sales_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:pie_chart/pie_chart.dart';
