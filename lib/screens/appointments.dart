@@ -1,5 +1,4 @@
 import 'package:dental_patient_management/model/patient.dart';
-import 'package:dental_patient_management/screens/patinet_page.dart';
 import 'package:dental_patient_management/widgets/patient_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

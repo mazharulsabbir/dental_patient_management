@@ -1,5 +1,7 @@
+import 'package:dental_patient_management/model/chart_data.dart';
+import 'package:dental_patient_management/widgets/charts.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
+import 'dart:math' as math;
 
 class Earnings extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class _EarningsState extends State<Earnings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Sheba Dental Care'),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.ac_unit),
@@ -22,29 +24,53 @@ class _EarningsState extends State<Earnings> {
       ),
       body: ListView(
         children: <Widget>[
-          Center(child: pieChart()),
-          Center(child: pieChart()),
-          Center(child: pieChart()),
-          Center(child: pieChart()),
+          Column(
+            children: <Widget>[
+              Card(
+                child: MyChart().pieChart(dataMap()),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  // child: MyChart().lineChart(_generateRandomData(7)),
+                  child: MyChart().splineChart(chartData())  ,
+                ),
+              ),
+              
+            ],
+          ),
         ],
       ),
     );
   }
 
-  Widget pieChart() {
+  var random = new math.Random();
+
+  List<ChartData> chartData() {
+    var chartData = [
+      ChartData('Sat', 10000, 7000, 3000),
+      ChartData('Sun', 11000, 7000, 3000),
+      ChartData('Mon', 1200, 7000, 5000),
+      ChartData('Tue', 10000, 7000, 3000),
+      ChartData('Wed', 15000, 7000, 8000),
+      ChartData('Thu', 7000, 7000, 7000),
+      ChartData('Fri', 5000, 5000, 0),
+    ];
+    return chartData;
+  }
+
+  Map<String, double> dataMap() {
     Map<String, double> dataMap = new Map();
     dataMap.putIfAbsent("Scaling", () => 5);
     dataMap.putIfAbsent("Filling", () => 3);
     dataMap.putIfAbsent("R.C.T", () => 2);
     dataMap.putIfAbsent("Cap", () => 2);
-    dataMap.putIfAbsent("Extraction", () => 2);
-    dataMap.putIfAbsent("Palpectomy", () => 2);
+    dataMap.putIfAbsent("Extraction", () => 4);
+    dataMap.putIfAbsent("Pulpectomy", () => 2);
 
-    return PieChart(
-      dataMap: dataMap,
-      legendPosition: LegendPosition.right,
-      chartType: ChartType.disc,
-      showLegends: true,
-    );
+    return dataMap;
   }
 }
