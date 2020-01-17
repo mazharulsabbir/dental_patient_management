@@ -1,6 +1,6 @@
-import 'package:dental_patient_management/widgets/appointments.dart';
-import 'package:dental_patient_management/widgets/earnings.dart';
-import 'package:dental_patient_management/widgets/patinet_page.dart';
+import 'package:dental_patient_management/screens/appointments.dart';
+import 'package:dental_patient_management/screens/earnings.dart';
+import 'package:dental_patient_management/screens/patinet_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Main());

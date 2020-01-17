@@ -1,32 +1,10 @@
-import 'package:dental_patient_management/model/patient.dart';
-import 'package:dental_patient_management/widgets/patient_detail_page.dart';
+import 'package:dental_patient_management/screens/patient_detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:dental_patient_management/model/patient.dart';
 
-class PatientListPage extends StatefulWidget {
-  @override
-  _PatientListPageState createState() => _PatientListPageState();
-}
+class PatientListItem{
+  Widget listOfPatients() {    
 
-class _PatientListPageState extends State<PatientListPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Patients'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.ac_unit),
-          onPressed: () {
-            print('Unit Pressed');
-          },
-        ),
-      ),
-      body: _listOfPatients(),
-    );
-  }
-
-  Widget _listOfPatients() {    
     List<Patient> patients = new List();
     var patient = new Patient("Mazharul Sabbir", '1825632294',
         'Dhaka Bangladesh', 'Cap', 'Completed', '1000', '1000', '0');
@@ -56,11 +34,11 @@ class _PatientListPageState extends State<PatientListPage> {
     return ListView.builder(
         itemCount: patients.length,
         itemBuilder: (BuildContext context, int i) {
-          return _patientListItem(patients, i);
+          return patientListItem(context,patients, i);
         });
   }
 
-  Widget _patientListItem(List<Patient> patients, int p) {
+Widget patientListItem(BuildContext context,List<Patient> patients, int p) {
     const double _margin_8 = 8.0;
     const double _margin_4 = 4.0;
 
@@ -77,7 +55,7 @@ class _PatientListPageState extends State<PatientListPage> {
           onTap: () {
             //open detail page activity/page
             Navigator.push(
-                this.context,
+                context,
                 MaterialPageRoute(
                     builder: (context) => PatientDetailPage(patients[p])));
             print('Tapped $p : ${patients[p].name}');
