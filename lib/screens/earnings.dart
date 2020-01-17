@@ -11,6 +11,8 @@ class Earnings extends StatefulWidget {
 class _EarningsState extends State<Earnings> {
   String _selectedTypeForStat = 'Weekly'.toString();
   String _selectedTypeForTreatment = 'Daily'.toString();
+  String _selectedTypeForIncome = 'Weekly'.toString();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +83,7 @@ class _EarningsState extends State<Earnings> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Account',
+                            'Earnings',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 32.0),
                           ),
@@ -93,11 +95,8 @@ class _EarningsState extends State<Earnings> {
                               });
                             },
                             hint: Text(_selectedTypeForStat.toString()),
-                            items: <String>[                              
-                              'Weekly',
-                              'Monthly',
-                              'Yearly'
-                            ].map((String day) {
+                            items: <String>['Weekly', 'Monthly', 'Yearly']
+                                .map((String day) {
                               return new DropdownMenuItem<String>(
                                 value: day.toString(),
                                 child: new Text(day.toString()),
@@ -110,6 +109,46 @@ class _EarningsState extends State<Earnings> {
                         height: 16.0,
                       ),
                       MyChart().splineChart(chartData())
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  // child: MyChart().lineChart(_generateRandomData(7)),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Profit',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 32.0),
+                          ),
+                          DropdownButton<String>(
+                            onChanged: (day) {
+                              setState(() {
+                                _selectedTypeForIncome = day.toString();
+                                print(_selectedTypeForIncome);
+                              });
+                            },
+                            hint: Text(_selectedTypeForIncome.toString()),
+                            items: <String>['Weekly', 'Monthly', 'Yearly']
+                                .map((String day) {
+                              return new DropdownMenuItem<String>(
+                                value: day.toString(),
+                                child: new Text(day.toString()),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      MyChart().lineChart(lineChartData())
                     ],
                   ),
                 ),
@@ -142,6 +181,18 @@ class _EarningsState extends State<Earnings> {
     ];
 
     return chartData;
+  }
+
+  List<double> lineChartData() {
+    return [
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble(),
+      random.nextInt(15).toDouble()
+    ];
   }
 
   Map<String, double> dataMap() {

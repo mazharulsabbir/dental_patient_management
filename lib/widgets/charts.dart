@@ -1,4 +1,5 @@
 import 'package:dental_patient_management/model/chart_data.dart';
+import 'package:dental_patient_management/model/sales_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -20,16 +21,16 @@ class MyChart {
       lineGradient: new LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        colors: [Colors.purple[800], Colors.purple[200]],
+        colors: [Colors.red[800], Colors.red[200]],
       ),
-      // fillMode: FillMode.below,
-      // fillGradient: new LinearGradient(
-      //   begin: Alignment.topCenter,
-      //   end: Alignment.bottomCenter,
-      //   colors: [Colors.purple[800], Colors.purple[200]],
-      // ),
-      pointsMode: PointsMode.all,
-      pointColor: Colors.amber,
+      fillMode: FillMode.below,
+      fillGradient: new LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.red[800], Colors.red[200]],
+      ),
+      pointsMode: PointsMode.last,
+      pointColor: Colors.blue,
     );
   }
 
@@ -53,4 +54,3 @@ class MyChart {
     );
   }
 }
-
