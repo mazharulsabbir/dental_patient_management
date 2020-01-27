@@ -29,10 +29,8 @@ class DetailOfPatient extends StatefulWidget {
 class _DetailOfPatientState extends State<DetailOfPatient> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(widget._patient.name),
-      ),
+    return SafeArea(
+      child: Text(widget._patient.name),
     );
   }
 }
