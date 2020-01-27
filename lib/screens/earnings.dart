@@ -164,20 +164,48 @@ class _EarningsState extends State<Earnings> {
 
   List<ChartData> chartData() {
     var chartData = [
-      ChartData('Sat', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Sun', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Mon', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Tue', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Wed', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Thu', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
-      ChartData('Fri', random.nextInt(15000).toDouble(),
-          random.nextInt(15000).toDouble(), random.nextInt(15000).toDouble()),
+      ChartData(
+        'Sat',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Sun',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Mon',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Tue',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Wed',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Thu',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
+      ChartData(
+        'Fri',
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+        random.nextInt(15000).toDouble(),
+      ),
     ];
 
     return chartData;
@@ -185,24 +213,24 @@ class _EarningsState extends State<Earnings> {
 
   List<double> lineChartData() {
     return [
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble(),
-      random.nextInt(15).toDouble()
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1,
+      random.nextInt(15).toDouble() + 1
     ];
   }
 
   Map<String, double> dataMap() {
     Map<String, double> dataMap = new Map();
-    dataMap.putIfAbsent("Scaling", () => random.nextInt(5).toDouble());
-    dataMap.putIfAbsent("Filling", () => random.nextInt(5).toDouble());
-    dataMap.putIfAbsent("R.C.T", () => random.nextInt(5).toDouble());
-    dataMap.putIfAbsent("Cap", () => random.nextInt(5).toDouble());
-    dataMap.putIfAbsent("Extraction", () => random.nextInt(5).toDouble());
-    dataMap.putIfAbsent("Pulpectomy", () => random.nextInt(5).toDouble());
+    dataMap.putIfAbsent("Scaling", () => random.nextInt(5).toDouble() + 1);
+    dataMap.putIfAbsent("Filling", () => random.nextInt(5).toDouble() + 1);
+    dataMap.putIfAbsent("R.C.T", () => random.nextInt(5).toDouble() + 1);
+    dataMap.putIfAbsent("Cap", () => random.nextInt(5).toDouble() + 1);
+    dataMap.putIfAbsent("Extraction", () => random.nextInt(5).toDouble() + 1);
+    dataMap.putIfAbsent("Pulpectomy", () => random.nextInt(5).toDouble() + 1);
 
     return dataMap;
   }
