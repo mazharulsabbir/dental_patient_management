@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "510018341368",
+    "firebase_url": "https://wireless-project-in-lab.firebaseio.com",
+    "project_id": "wireless-project-in-lab",
+    "storage_bucket": "wireless-project-in-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510018341368:android:7d6dae486dcf0f847dee0d",
+        "android_client_info": {
+          "package_name": "com.example.dental_patient_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510018341368-fsn2timbt5orjgatfgra4gp5ftknf95i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZL-ybSykOpFCCSlGiEKvDH45fy36VzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510018341368-fsn2timbt5orjgatfgra4gp5ftknf95i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

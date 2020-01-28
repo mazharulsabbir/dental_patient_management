@@ -100,10 +100,10 @@ class AddNewPatientState extends State<AddNewPatient> {
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Total Amount',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(),                      
                     ),
                     keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.next,                                      
                   ),
                   SizedBox(
                     height: 8.0,
