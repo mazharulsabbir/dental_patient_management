@@ -1,3 +1,5 @@
+import 'package:dental_patient_management/model/patient.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
@@ -10,6 +12,8 @@ class AddNewPatient extends StatefulWidget {
 
 class AddNewPatientState extends State<AddNewPatient> {
   String _nextMeetingDate = 'Completed';
+  DatabaseReference mRef = FirebaseDatabase.instance.reference();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +86,7 @@ class AddNewPatientState extends State<AddNewPatient> {
                       "Extraction",
                       "Palcectomy",
                     ],
-                    picked: 'Scaling',                    
+                    picked: 'Scaling',
                     onSelected: (String selected) => print(selected),
                     orientation: GroupedButtonsOrientation.VERTICAL,
                   ),
@@ -100,10 +104,10 @@ class AddNewPatientState extends State<AddNewPatient> {
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Total Amount',
-                      border: OutlineInputBorder(),                      
+                      border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,                                      
+                    textInputAction: TextInputAction.next,
                   ),
                   SizedBox(
                     height: 8.0,
@@ -151,7 +155,6 @@ class AddNewPatientState extends State<AddNewPatient> {
                       ),
                     ],
                   ),
-                  
                   SizedBox(
                     height: 50.0,
                   ),
@@ -160,7 +163,20 @@ class AddNewPatientState extends State<AddNewPatient> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var value = new Patient(
+                              "Mazharul Sabbir",
+                              '1825632294',
+                              'Dhaka Bangladesh',
+                              'Cap',
+                              'Completed',
+                              '1000',
+                              '1000',
+                              '0');
+                          mRef.child('patients')
+                          .child('patient-list')
+                          .set(value);
+                        },
                         child: Text('Add New Patient'),
                       ),
                     ],
